@@ -186,7 +186,17 @@ function Navbar() {
                 </NavigationMenu>
             </div>
             <div>
-                abcd
+                <NavigationMenu>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link to="/login">
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    Login
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
             </div>
         </div>
     )
