@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import HomeMain from './pages/home/HomeMain';
 import ServiceMain from './pages/services/ServiceMain';
 import Login from './components/Login';
-import Test from './components/Test';
+import UserList from './components/UserList';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
           <Route path='/' element={<HomeMain />} />
           <Route path='/services' element={<ServiceMain />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/test' element={<Test />} />
+          <Route path='/userlist' element={<UserList />} />
         </Routes>
     </>
   )
