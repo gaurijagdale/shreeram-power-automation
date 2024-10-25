@@ -37,7 +37,7 @@ function OtherServices() {
                         </ShineBorder>
                     </div>
                     <div className='w-3/5'>
-                        <h2 className=' text-4xl font-medium'>We Provide a wide range of services</h2>
+                        <h2 className=' text-4xl font-medium text-center'>We Provide a wide range of services</h2>
                     </div>
                 </div>
             </motion.div>
