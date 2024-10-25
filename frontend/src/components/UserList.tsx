@@ -1,64 +1,57 @@
+// src/pages/UsersList.tsx
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { checkLoginStatus } from '../utils/authUtils'; // Import the utility function
 
 const UsersList = () => {
     const [users, setUsers] = useState<any[]>([]);
     const [clients, setClients] = useState<any[]>([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-    const [error, setError] = useState<string | null>(null); // Error state
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const [error, setError] = useState<string | null>(null); 
+    
     const handleLogout = async () => {
         try {
             await axios.post('http://localhost:5001/api/auth/logout', {}, { withCredentials: true });
-            setIsLoggedIn(false); // Update the login status
-            setUsers([]); // Clear users if needed
-            setClients([]); // Clear clients if needed
-            // Optionally redirect or show a logout message
+            setIsLoggedIn(false); 
+            setUsers([]); 
+            setClients([]); 
         } catch (error) {
             console.error('Logout error:', error);
         }
     };
-    
+
     useEffect(() => {
-
-        // Function to check login status
-        const checkLoginStatus = async () => {
-            try {
-                const response = await axios.get('http://localhost:5001/api/users', {
-                    withCredentials: true, // Send cookies with the request
-                });
-                setIsLoggedIn(true); // If successful, the user is logged in
-            } catch (error) {
-                console.error('Error checking login status:', error);
-                setIsLoggedIn(false); // If error, user is not logged in
-            }
-        };
-
-        // Function to fetch users and clients
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/users', {
+                const usersResponse = await axios.get('http://localhost:5001/api/users', {
                     withCredentials: true // Include credentials for session
                 });
-                setUsers(response.data.users);   // Access users array
-                setClients(response.data.clients); // Access clients array
+                setUsers(usersResponse.data.users);
+                setClients(usersResponse.data.clients);
             } catch (error) {
                 console.error('Error fetching users and clients:', error);
                 setError('Failed to fetch users and clients.');
             }
         };
 
-        checkLoginStatus(); // Check login status first
-        fetchData(); // Then fetch users and clients
+        const checkAndFetchData = async () => {
+            const loginStatus = await checkLoginStatus(); // Use the imported function
+            setIsLoggedIn(loginStatus);
+            if (loginStatus) {
+                await fetchData(); // Fetch users and clients only if logged in
+            }
+        };
+
+        checkAndFetchData(); // Check login status and fetch data
     }, []);
 
     return (
         <div className='mt-24 w-full min-h-screen flex flex-col bg-blue-50 p-20 space-y-5'>
             <h1 className='font-semibold text-2xl'>Users Login Page</h1>
 
-            {/* Conditional rendering based on login status */}
             <div className='bg-blue-200 p-5 rounded-lg'>
-                {error && <p className='text-red-600'>{error}</p>} {/* Display error message */}
+                {error && <p className='text-red-600'>{error}</p>} 
                 {isLoggedIn ? (
                     <>
                         <h3 className='font-semibold text-lg tracking-tighter mb-5'>
