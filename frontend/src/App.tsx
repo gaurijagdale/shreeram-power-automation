@@ -7,6 +7,7 @@ import HomeMain from './pages/home/HomeMain';
 import ServiceMain from './pages/services/ServiceMain';
 import Login from './components/Login';
 import UserList from './components/UserList';
+import AboutMain from './pages/aboutus/AboutMain';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomeMain />} />
           <Route path='/services' element={<ServiceMain />} />
+          <Route path='/aboutus' element={<AboutMain />} />
           <Route path='/login' element={<Login />} />
           <Route path='/userlist' element={<UserList />} />
         </Routes>

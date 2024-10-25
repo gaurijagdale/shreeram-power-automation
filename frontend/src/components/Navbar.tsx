@@ -127,59 +127,61 @@ function Navbar() {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <div className="grid grid-cols-4 gap-2 text-xs p-3 font-medium w-[500px]">
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
+                            <Link to='/aboutus'>
+                                <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <div className="grid grid-cols-4 gap-2 text-xs p-3 font-medium w-[500px]">
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-red-500">
+                                                For small businesses
+                                            </h4>
+                                            <p className="text-slate-500">
+                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                        <h4 className="font-semibold group-hover:text-red-500">
-                                            For small businesses
-                                        </h4>
-                                        <p className="text-slate-500">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                </div>
-                            </NavigationMenuContent>
+                                </NavigationMenuContent>
+                            </Link>
                         </NavigationMenuItem>
 
                     </NavigationMenuList>
@@ -191,7 +193,7 @@ function Navbar() {
                         <NavigationMenuItem>
                             <Link to="/login">
                                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                Get our Quotes
+                                    Get our Quotes
                                 </NavigationMenuLink>
                             </Link>
                         </NavigationMenuItem>
