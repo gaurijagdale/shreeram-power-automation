@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser'; // Import cookie-parser
 
 import session from 'express-session';
 import passport from 'passport';
@@ -21,6 +22,8 @@ const PORT = process.env.PORT || 5001;
 // Middleware
 app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Adjust the origin as necessary
 app.use(express.json());
+
+app.use(cookieParser()); // Add cookie parser middleware
 
 // Configure session
 app.use(session({

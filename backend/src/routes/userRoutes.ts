@@ -1,33 +1,42 @@
 // routes/userRoutes.ts
 import express, { Request, Response } from 'express';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
+
+import {verifyToken} from '../middlewares/auth';
+
 import User from '../models/User';
-import Client from '../models/Client'; // Import the Client model
+import Client from '../models/Client';
 
 const router = express.Router();
 
-// Google Auth Routes
+// Generate JWT token function
+const generateToken = (user: any) => {
+    const payload = {
+        id: user._id,
+        email: user.email,
+    };
+
+    return jwt.sign(payload, process.env.JWT_SECRET || 'your_jwt_secret', {
+        expiresIn: '1h',
+    });
+};
+
+
+// Google OAuth login route
 router.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
 }));
 
+// Google OAuth callback route
 router.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
-    (req, res) => {
-        // Successful authentication, redirect to desired route
-        res.redirect('http://localhost:5173'); // Redirect to your React app
+    (req: Request, res: Response) => {
+        const token = generateToken(req.user); // Generate JWT
+        res.cookie('token', token, { httpOnly: true, secure: false }); // Send JWT as cookie
+        res.redirect('http://localhost:5173'); // Redirect to frontend
     }
 );
-
-
-// routes/auth.js or auth route file
-// router.get('/auth/check-login', (req: express.Request, res: express.Response) => {
-//     if (req.isAuthenticated()) {  // Now this should work
-//         return res.json({ isLoggedIn: true, user: req.user });
-//     } else {
-//         return res.json({ isLoggedIn: false });
-//     }
-// });
 
 // Add a new client
 router.post('/add-client', async (req, res) => {
@@ -47,12 +56,22 @@ router.post('/add-client', async (req, res) => {
     }
 });
 
+router.post('/auth/logout', (req: express.Request, res: express.Response) => {
+    req.logout((err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Logout failed', error: err });
+        }
+        res.clearCookie('token'); // Clear the token cookie if you're using JWT
+        res.status(200).json({ message: 'Logged out successfully' });
+    });
+});
+
 // Get all users and clients
-router.get('/users', async (req, res) => {
+router.get('/users', verifyToken, async (req: Request, res: Response) => {
     try {
         const users = await User.find();
         const clients = await Client.find();
-        res.json({ users, clients }); // Send both collections
+        res.json({ users, clients });
     } catch (err) {
         res.status(500).json({ error: 'Something went wrong' });
     }

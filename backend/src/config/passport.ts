@@ -1,9 +1,22 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import User from '../models/User';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import User from '../models/User';
 
 dotenv.config();
+
+// Generate JWT token
+const generateToken = (user: any) => {
+    const payload = {
+        id: user._id,
+        email: user.email,
+    };
+
+    return jwt.sign(payload, process.env.JWT_SECRET || 'your_jwt_secret', {
+        expiresIn: '1h', // Token expires in 1 hour
+    });
+};
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID || '',
@@ -13,13 +26,13 @@ passport.use(new GoogleStrategy({
     try {
         const existingUser = await User.findOne({ googleId: profile.id });
         if (existingUser) {
-            return done(null, existingUser); // User already exists
+            return done(null, existingUser); // User exists
         }
 
-        // Create a new user with email
+        // If user doesn't exist, create a new one
         const newUser = new User({
             googleId: profile.id,
-            email: profile.emails[0].value, // Only save email
+            email: profile.emails[0].value, // Use email from Google
             createdAt: new Date(),
         });
         await newUser.save();
@@ -29,6 +42,7 @@ passport.use(new GoogleStrategy({
     }
 }));
 
+// Serialize and deserialize the user for session (not needed for JWT but used by Passport)
 passport.serializeUser((user: any, done) => {
     done(null, user.id);
 });
