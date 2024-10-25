@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 
-import {verifyToken} from '../middlewares/auth';
+import verifyToken from '../middlewares/verifyToken';
 
 import User from '../models/User';
 import Client from '../models/Client';
@@ -65,6 +65,18 @@ router.post('/auth/logout', (req: express.Request, res: express.Response) => {
         res.status(200).json({ message: 'Logged out successfully' });
     });
 });
+
+// Universal check login route
+router.get('/auth/check-login', verifyToken, (req: Request, res: Response): void => {
+    // If the user is set on the request object, they are logged in
+    if (req.user) {
+        res.json({ isLoggedIn: true, user: req.user });
+    } else {
+        res.json({ isLoggedIn: false });
+    }
+});
+
+
 
 // Get all users and clients
 router.get('/users', verifyToken, async (req: Request, res: Response) => {
