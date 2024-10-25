@@ -185,7 +185,18 @@ function Navbar() {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div>
+            <div className="flex">
+                <NavigationMenu>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <Link to="/login">
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                Get our Quotes
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>

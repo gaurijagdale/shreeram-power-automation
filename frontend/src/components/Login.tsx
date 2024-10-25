@@ -65,7 +65,6 @@ function Login() {
         <div className='bg-black py-16 px-24'>
             <div className='main bg-white rounded-xl grid grid-cols-2 gap-5 py-16 px-12 text-center'>
                 <div className='imgs col-span-1 flex items-center justify-center'>
-                    {/* Replacing the brand logo image with the carousel */}
                     <CarouselPlugin />
                 </div>
                 <div className='form col-span-1 flex flex-col items-center space-y-7'>
