@@ -1,17 +1,18 @@
-import { Schema, model, Document } from 'mongoose';
+// models/User.ts
+import mongoose, { Document, Schema } from 'mongoose';
 
-interface IUser extends Document {
-    username: string;
+export interface IUser extends Document {
     email: string;
-    password: string;
+    password?: string; // Optional for Google users
+    googleId?: string; // Optional for email/password users
+    createdAt: Date;
 }
 
-const UserSchema = new Schema<IUser>({
-    username: { type: String, required: true },
+const UserSchema: Schema = new Schema({
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String }, // For email/password login
+    googleId: { type: String }, // For Google login
+    createdAt: { type: Date, default: Date.now },
 });
 
-const User = model<IUser>('User', UserSchema);
-
-export default User;
+export default mongoose.model<IUser>('User', UserSchema);

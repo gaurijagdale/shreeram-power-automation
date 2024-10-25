@@ -1,10 +1,8 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import brandLogo from '../assets/imgs/brand-logo.png';
-import cr1 from '../assets/imgs/login1.jpg'
-import cr2 from '../assets/imgs/login2.jpeg'
-import cr3 from '../assets/imgs/login3.jpg'
-
+import cr1 from '../assets/imgs/login1.jpg';
+import cr2 from '../assets/imgs/login2.jpeg';
+import cr3 from '../assets/imgs/login3.jpg';
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,8 +13,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export function CarouselPlugin() {
@@ -46,7 +42,7 @@ export function CarouselPlugin() {
                                     <img
                                         src={imageUrl}
                                         alt={`Slide ${index + 1}`}
-                                        className="object-cover w-full h-full rounded" 
+                                        className="object-cover w-full h-full rounded"
                                     />
                                 </CardContent>
                             </Card>
@@ -54,22 +50,29 @@ export function CarouselPlugin() {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            {/* <CarouselPrevious /> */}
-            {/* <CarouselNext /> */}
         </Carousel>
     );
 }
 
 function Login() {
+    const [isSignUp, setIsSignUp] = useState(false);
+
+    const toggleForm = () => {
+        setIsSignUp(!isSignUp);
+    };
+
     return (
         <div className='bg-black py-16 px-24'>
             <div className='main bg-white rounded-xl grid grid-cols-2 gap-5 py-16 px-12 text-center'>
                 <div className='imgs col-span-1 flex items-center justify-center'>
                     <CarouselPlugin />
                 </div>
+
                 <div className='form col-span-1 flex flex-col items-center space-y-7'>
                     <div>
-                        <img src={brandLogo} alt="brandLogo" className='w-20 h-20' />
+                        <a href="/">
+                            <img src={brandLogo} alt="brandLogo" className='w-20 h-20' />
+                        </a>
                     </div>
                     <div className='space-y-3'>
                         <h1 className='text-Dblue text-3xl font-semibold'>SHREERAM POWER AND AUTOMATION</h1>
@@ -77,24 +80,77 @@ function Login() {
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, incidunt soluta. Nam esse ut saepe ad tempore consectetur possimus, quam aperiam rerum perferendis.
                         </p>
                     </div>
-                    <div className='flex flex-col space-y-5 items-center w-full'>
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                            <Label htmlFor="email" className='text-start text-zinc-600'>Email</Label>
-                            <Input type="email" id="email" placeholder="Email" className='h-12' />
+
+                    {/* Conditional Rendering for Sign-Up and Login */}
+                    {!isSignUp ? (
+                        <div className='flex flex-col space-y-5 items-center'>
+                            {/* Login Form */}
+                            <div className="grid w-full max-w-sm items-center gap-1.5">
+                                <Label htmlFor="email" className='text-start text-zinc-600'>Email</Label>
+                                <Input type="email" id="email" placeholder="Email" className='h-12' />
+                            </div>
+                            <div className="grid w-full max-w-sm items-center gap-1.5">
+                                <Label htmlFor="password" className='text-start text-zinc-600'>Password</Label>
+                                <Input type="password" id="Password" placeholder="Password" className='h-12' />
+                            </div>
+                            <Button variant="auto" className='w-96 h-12 text-md'>Login</Button>
+                            <div className='w-full flex items-center justify-center space-x-4'>
+                                <hr className='border border-slate-400 w-full' />
+                                <p>or</p>
+                                <hr className='border border-slate-400 w-full' />
+                            </div>
+                            <Button variant="outline" className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
+                                Login with
+                                <img src="/googleLogo.svg" className='w-20 mt-1' alt="google_logo" />
+                            </Button>
+
+                            <p>Don't have an account? <span onClick={toggleForm} className='text-blue-600 font-medium hover:underline cursor-pointer'>Sign Up</span></p>
                         </div>
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
-                            <Label htmlFor="password" className='text-start text-zinc-600'>Password</Label>
-                            <Input type="password" id="Password" placeholder="Password" className='h-12' />
+
+
+                    ) : (
+
+
+                        <div className='flex flex-col space-y-5 items-center'>
+                            {/* Sign-Up Form */}
+                            <div className="grid w-full max-w-sm items-center gap-1.5">
+                                <Label htmlFor="email" className='text-start text-zinc-600'>Email</Label>
+                                <Input type="email" id="email" placeholder="Email" className='h-12' />
+                            </div>
+
+                            <div className="flex w-full max-w-sm space-x-4">
+                                <div className="grid w-full items-center gap-1.5">
+                                    <Label htmlFor="password" className='text-start text-zinc-600'>Password</Label>
+                                    <Input type="password" id="password" placeholder="Password" className='h-12' />
+                                </div>
+                                <div className="grid w-full items-center gap-1.5">
+                                    <Label htmlFor="confirmPassword" className='text-start text-zinc-600'>Confirm Password</Label>
+                                    <Input type="password" id="confirmPassword" placeholder="Confirm Password" className='h-12' />
+                                </div>
+                            </div>
+
+                            <Button variant="auto" className='w-96 h-12 text-md'>Register</Button>
+                            <div className='w-full flex items-center justify-center space-x-4'>
+                                <hr className='border border-slate-400 w-full' />
+                                <p>or</p>
+                                <hr className='border border-slate-400 w-full' />
+                            </div>
+                            <Button variant="outline" className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
+                                Register with
+                                <img src="/googleLogo.svg" className='w-20 mt-1' alt="google_logo" />
+                            </Button>
+
+                            <p>Already have an account? <span onClick={toggleForm} className='text-blue-600 font-medium hover:underline cursor-pointer'>Login</span></p>
                         </div>
-                        <Button variant="auto" className='w-96 h-12 text-md'>Login</Button>
-                        <Button variant="outline" className='w-96 h-12 text-md bg-slate-50 font-semibold hover:bg-slate-100 border-none'>
-                            Login with Google
-                        </Button>
-                    </div>
+                    )
+
+
+                    }
                 </div>
             </div>
         </div>
     );
+
 }
 
 export default Login;
