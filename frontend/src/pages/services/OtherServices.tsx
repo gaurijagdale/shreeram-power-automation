@@ -25,8 +25,8 @@ function OtherServices() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 1.5, type: 'spring' }}
             >
-                <div className='flex justify-between'>
-                    <div className=' w-2/5'>
+                <div className='flex justify-between items-center'>
+                    <div className=' w-2/5 items-center'>
                         <ShineBorder
                             className="relative w-fit flex flex-col items-center justify-center overflow-hidden rounded-2xl border bg-background md:shadow-xl"
                             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
