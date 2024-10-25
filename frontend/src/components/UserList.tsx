@@ -7,18 +7,30 @@ const UsersList = () => {
     const [clients, setClients] = useState<any[]>([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
     const [error, setError] = useState<string | null>(null); // Error state
-
+    const handleLogout = async () => {
+        try {
+            await axios.post('http://localhost:5001/api/auth/logout', {}, { withCredentials: true });
+            setIsLoggedIn(false); // Update the login status
+            setUsers([]); // Clear users if needed
+            setClients([]); // Clear clients if needed
+            // Optionally redirect or show a logout message
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    };
+    
     useEffect(() => {
+
         // Function to check login status
         const checkLoginStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/auth/check-login', {
-                    withCredentials: true // Include credentials for session
+                const response = await axios.get('http://localhost:5001/api/users', {
+                    withCredentials: true, // Send cookies with the request
                 });
-                setIsLoggedIn(response.data.isLoggedIn);
+                setIsLoggedIn(true); // If successful, the user is logged in
             } catch (error) {
                 console.error('Error checking login status:', error);
-                setError('Failed to check login status.');
+                setIsLoggedIn(false); // If error, user is not logged in
             }
         };
 
@@ -79,6 +91,9 @@ const UsersList = () => {
                     Login with Google
                 </Button>
             </a>
+            <Button variant="outline" onClick={handleLogout} className='w-96 h-12 text-md font-semibold bg-red-100 border-none'>
+                Logout
+            </Button>
         </div>
     );
 };
