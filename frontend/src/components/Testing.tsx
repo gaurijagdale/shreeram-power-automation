@@ -76,7 +76,7 @@ const Testing = () => {
                 {isLoggedIn ? (
                     <>
                         <h3 className='font-semibold text-lg tracking-tighter mb-5'>
-                            You are currently <span className='font-mono text-green-500 bg-slate-200 px-4 py-2 rounded-md'>logged in</span>.
+                            You are currently <span className='font-mono text-green-500 bg-slate-200 px-4 py-2 rounded-md'>logged in</span>
                         </h3>
                         <div>
                             <h4 className='font-medium text-lg'>Users Logged In</h4>
@@ -89,31 +89,27 @@ const Testing = () => {
                                 </div>))}
 
                             <br />
+
+                            <h4 className='font-medium text-lg text-white'>Clients</h4>
+                            <div className="bg-white shadow-md rounded-lg p-4 mb-4">
+                                {clients.map(client => (
+                                    <p key={client._id} className="text-gray-600">Client ID: <span className="font-medium">{`${client.clientName}, ${client.clientAddress}`}</span></p>
+                                ))}
+                            </div>
                         </div>
                     </>
                 ) : (
                     <>
                         <h3 className='font-semibold text-lg tracking-tighter mb-5'>
-                            You are currently <span className='font-mono text-red-500 bg-slate-200 px-4 py-2 rounded-md'>logged out</span>.
+                            You are currently <span className='font-mono text-red-500 bg-slate-200 px-4 py-2 rounded-md'>logged out</span>
                         </h3>
                         <div>
-                            <h4 className='font-medium text-lg'>Users Logged In <span className='font-normal text-base text-zinc-400'>  - - - (will visible only when you logged in)</span></h4>
+                            <h4 className='font-medium text-lg'>Users Logged In <span className='font-normal text-base text-zinc-400'>&</span> All Our Clients <span className='font-normal text-base text-zinc-400'>  - - - (will visible only when you logged in)</span></h4>
                         </div>
                     </>
 
                 )}
             </div>
-
-
-            <div>
-                <h4 className='font-medium text-lg text-white'>Clients</h4>
-                <div className="bg-white shadow-md rounded-lg p-4 mb-4">
-                    {clients.map(client => (
-                        <p key={client._id} className="text-gray-600">Client ID: <span className="font-medium">{`${client.clientName}, ${client.clientAddress}`}</span></p>
-                    ))}
-                </div>
-            </div>
-
 
             <Button variant="outline" onClick={() => { openExternalLink(googleLoginURL) }} className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
                 Login with
