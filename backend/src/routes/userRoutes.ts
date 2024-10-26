@@ -28,6 +28,7 @@ router.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
 }));
 
+
 // Google OAuth callback route
 router.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
@@ -69,5 +70,17 @@ router.get('/users', verifyToken, async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
+
+
+// Get all clients
+router.get('/get-clients', async (req: Request, res: Response) => {
+    try {
+        const clients = await Client.find();
+        res.json({ clients });
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+});
+
 
 export default router;

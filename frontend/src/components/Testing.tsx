@@ -78,7 +78,7 @@ const Testing = () => {
                         <h3 className='font-semibold text-lg tracking-tighter mb-5'>
                             You are currently <span className='font-mono text-green-500 bg-slate-200 px-4 py-2 rounded-md'>logged in</span>.
                         </h3>
-                        <ul>
+                        <div>
                             <h4 className='font-medium text-lg'>Users Logged In</h4>
                             {users.map(user => (
                                 <div key={user._id} className="bg-white shadow-md rounded-lg p-4 mb-4">
@@ -89,23 +89,29 @@ const Testing = () => {
                                 </div>))}
 
                             <br />
-
-                            <h4 className='font-medium text-lg'>Clients</h4>
-                            {clients.map(client => (
-                                <div key={client._id} className="bg-white shadow-md rounded-lg p-4 mb-4">
-                                    <h3 className="font-bold text-xl text-gray-800">{client.clientName}</h3>
-                                    <p className="text-gray-600">Client ID: <span className="font-medium">{client._id}</span></p>
-                                    <p className="text-gray-600">City: <span className="font-medium">{client.city}</span></p>
-                                    <p className="text-gray-600">Phone No: <span className="font-medium">{client.phoneno}</span></p>
-                                    <p className="text-gray-600">Created At: <span className="font-medium">{new Date(client.createdAt).toLocaleDateString()}</span></p>
-                                </div>))}
-                        </ul>
+                        </div>
                     </>
                 ) : (
-                    <h3 className='font-semibold text-lg tracking-tighter mb-5'>
-                        You are currently <span className='font-mono text-red-500 bg-slate-200 px-4 py-2 rounded-md'>logged out</span>.
-                    </h3>
+                    <>
+                        <h3 className='font-semibold text-lg tracking-tighter mb-5'>
+                            You are currently <span className='font-mono text-red-500 bg-slate-200 px-4 py-2 rounded-md'>logged out</span>.
+                        </h3>
+                        <div>
+                            <h4 className='font-medium text-lg'>Users Logged In <span className='font-normal text-base text-zinc-400'>  - - - (will visible only when you logged in)</span></h4>
+                        </div>
+                    </>
+
                 )}
+            </div>
+
+
+            <div>
+                <h4 className='font-medium text-lg text-white'>Clients</h4>
+                <div className="bg-white shadow-md rounded-lg p-4 mb-4">
+                    {clients.map(client => (
+                        <p key={client._id} className="text-gray-600">Client ID: <span className="font-medium">{`${client.clientName}, ${client.clientAddress}`}</span></p>
+                    ))}
+                </div>
             </div>
 
 
