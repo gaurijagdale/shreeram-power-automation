@@ -6,26 +6,11 @@ import Footer from "./components/Footer";
 import HomeMain from './pages/home/HomeMain';
 import ServiceMain from './pages/services/ServiceMain';
 import Login from './components/Login';
-import UserList from './components/UserList';
 import AboutMain from './pages/aboutus/AboutMain';
+import Testing from './components/testing';
 
-import { checkLoginStatus } from './utils/authUtils'; // Adjust the path as necessary
 
 function App() {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState<any>(null);
-
-    useEffect(() => {
-        const fetchLoginStatus = async () => {
-            const result = await checkLoginStatus();
-            setIsLoggedIn(result.isLoggedIn);
-            setUser(result.user);
-        };
-
-        fetchLoginStatus();
-    }, []);
-
 
     const location = useLocation(); // Get the current route
 
@@ -38,7 +23,7 @@ function App() {
                 <Route path='/services' element={<ServiceMain />} />
                 <Route path='/aboutus' element={<AboutMain />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/userlist' element={<UserList />} />
+                <Route path='/test' element={<Testing />} />
             </Routes>
             {location.pathname !== '/login' && <Footer />}
         </>

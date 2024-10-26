@@ -38,24 +38,6 @@ router.get('/auth/google/callback',
     }
 );
 
-// Add a new client
-router.post('/add-client', async (req, res) => {
-    try {
-        const { clientName, city, phoneno } = req.body; // Get data from request body
-
-        const newClient = new Client({
-            clientName,
-            city,
-            phoneno,
-        });
-
-        await newClient.save();
-        res.status(201).json({ message: 'Client added successfully', client: newClient });
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to add client' });
-    }
-});
-
 router.post('/auth/logout', (req: express.Request, res: express.Response) => {
     req.logout((err) => {
         if (err) {
@@ -75,7 +57,6 @@ router.get('/auth/check-login', verifyToken, (req: Request, res: Response): void
         res.json({ isLoggedIn: false });
     }
 });
-
 
 
 // Get all users and clients
