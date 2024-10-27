@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { checkLoginStatus } from '../utils/authUtils'; // Import the utility function
+
+
 import brandLogo from '../assets/imgs/brand-logo.png';
 import cr1 from '../assets/imgs/login1.jpg';
 import cr2 from '../assets/imgs/login2.jpeg';
@@ -54,12 +60,36 @@ export function CarouselPlugin() {
     );
 }
 
+
+
 function Login() {
+    const navigate = useNavigate();
+
     const [isSignUp, setIsSignUp] = useState(false);
+
+    const googleLoginURL = "http://localhost:5001/api/auth/google";
+
+    const openExternalLink = (url: string) => { // user that ${loginRouteURL} for Google login
+        window.open(url, '_blank');
+    };
 
     const toggleForm = () => {
         setIsSignUp(!isSignUp);
     };
+
+    useEffect(() => {
+        const checkUserLoggedIn = async () => {
+            const loginStatus = await checkLoginStatus(); // Use the imported function
+            console.log("Checking login status in login page...")
+
+            if (loginStatus.isLoggedIn) {
+                navigate('/', { state: { message: 'You are already logged in!' } })
+            }
+        };
+
+        checkUserLoggedIn(); // Check login status
+
+    }, [navigate]);
 
     return (
         <div className='bg-black py-16 px-24'>
@@ -99,7 +129,7 @@ function Login() {
                                 <p>or</p>
                                 <hr className='border border-slate-400 w-full' />
                             </div>
-                            <Button variant="outline" className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
+                            <Button variant="outline" onClick={() => { openExternalLink(googleLoginURL) }} className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
                                 Login with
                                 <img src="/googleLogo.svg" className='w-20 mt-1' alt="google_logo" />
                             </Button>
@@ -135,7 +165,7 @@ function Login() {
                                 <p>or</p>
                                 <hr className='border border-slate-400 w-full' />
                             </div>
-                            <Button variant="outline" className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
+                            <Button variant="outline" onClick={() => { openExternalLink(googleLoginURL) }} className='w-96 h-12 text-md bg-slate-50 font-semibold border hover:bg-slate-100 border-none hover:rounded-full'>
                                 Register with
                                 <img src="/googleLogo.svg" className='w-20 mt-1' alt="google_logo" />
                             </Button>
