@@ -8,13 +8,11 @@ const Testing = () => {
     const googleLoginURL = "http://localhost:5001/api/auth/google";
     const googleLogoutURL = "http://localhost:5001/api/auth/logout";
 
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const [users, setUsers] = useState<any[]>([]);
     const [clients, setClients] = useState<any[]>([]);
-
 
     const openExternalLink = (url: string) => { // user that ${loginRouteURL} for Google login
         window.open(url, '_blank');

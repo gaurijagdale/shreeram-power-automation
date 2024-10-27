@@ -7,7 +7,7 @@ import HomeMain from './pages/home/HomeMain';
 import ServiceMain from './pages/services/ServiceMain';
 import Login from './components/Login';
 import AboutMain from './pages/aboutus/AboutMain';
-import Testing from './components/testing';
+import Testing from './components/Testing';
 
 
 function App() {
