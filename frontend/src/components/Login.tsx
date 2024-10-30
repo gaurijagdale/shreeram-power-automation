@@ -3,6 +3,8 @@ import brandLogo from '../assets/imgs/brand-logo.png';
 import cr1 from '../assets/imgs/login1.jpg';
 import cr2 from '../assets/imgs/login2.jpeg';
 import cr3 from '../assets/imgs/login3.jpg';
+import cr4 from '../assets/imgs/work.jpeg';
+
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +25,8 @@ export function CarouselPlugin() {
     const imageUrls = [
         cr1,
         cr2,
-        cr3
+        cr3,
+        cr4
     ];
 
     return (
