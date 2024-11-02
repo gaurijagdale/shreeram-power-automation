@@ -1,7 +1,7 @@
-import * as React from "react"
-import { Link, useLocation } from 'react-router-dom';
-import brandLogo from '../assets/imgs/brand-logo.png';
 
+import React, { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
+import brandLogo from '../assets/imgs/brand-logo.png';
 
 import {
     NavigationMenu,
@@ -12,6 +12,33 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+
+import {
+    Dialog,
+    DialogContent,
+    DialogClose,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+import { useToast } from "@/components/hooks/use-toast"; // Import the useToast hook
+
+import axios from 'axios';
+import { checkLoginStatus } from '../utils/authUtils'; // Import the utility function
+import { Button } from "./ui/button";
+import { Textarea } from "./ui/textarea";
+
+interface User {
+    email: string;
+    id: string;
+    exp: number;
+    iat: number;
+}
 
 function Navbar() {
     const components: { title: string; href: string; description: string }[] = [
@@ -52,6 +79,96 @@ function Navbar() {
         },
     ]
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState<User | null>(null); // Initialize user as an object or null
+    const googleLogoutURL = "http://localhost:5001/api/auth/logout";
+    const handleLogout = async () => {
+        try {
+            await axios.post(googleLogoutURL, {}, { withCredentials: true });
+            setIsLoggedIn(false);
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    };
+
+
+    const [formData, setFormData] = useState({
+        phoneno: '',
+        email: '',
+        description: '',
+    });
+
+    const [errorMessage, setErrorMessage] = useState('');
+    const { toast } = useToast(); // Get the toast function
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setErrorMessage('');
+
+        // Basic validation
+        if (formData.phoneno.length < 10 || formData.phoneno.length > 15) {
+            setErrorMessage('Phone number must be between 10 and 15 digits.');
+            return;
+        }
+
+        // Prepare data for backend (you can modify this as needed)
+        const requestData = {
+            phoneno: formData.phoneno,
+            email: formData.email,
+            description: formData.description,
+        };
+
+        try {
+            // Replace with your API call
+            const response = await axios.post('http://your-backend-endpoint', requestData);
+            console.log('Response from server:', response.data);
+
+            toast({
+                className: "bg-green-600 text-white font-semibold border-none rounded-lg p-4 shadow-lg",
+                title: "Your quote request has been submitted successfully!",
+            });
+
+            // Optionally, reset the form or close the dialog here
+            // setFormData({
+            //     phoneno: '',
+            //     email: '',
+            //     description: '',
+            // });
+
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            console.log(formData)
+            toast({
+                className: "bg-red-600 text-white font-semibold border-none rounded-lg p-4 shadow-lg",
+                title: "Failed to submit your request. Please try again.",
+            });
+        }
+    };
+
+
+    useEffect(() => {
+        const checkAndFetchData = async () => {
+            const loginStatus = await checkLoginStatus(); // Use the imported function
+            console.log("Checking login status...")
+            setIsLoggedIn(loginStatus.isLoggedIn);
+            if (loginStatus.isLoggedIn) {
+                setUser(loginStatus.user)
+            }
+        };
+
+        checkAndFetchData(); // Check login status and fetch data
+
+    }, []);
+
+
     return (
         <div className='w-full bg-background/60 backdrop-blur flex justify-between items-center py-6 px-12 fixed top-0 z-20'>
             <div id='nav-left'>
@@ -59,7 +176,8 @@ function Navbar() {
                     <img src={brandLogo} alt="brandLogo" className='w-12 h-12' />
                 </Link>
             </div>
-            <div>
+            <div className="flex flex-grow justify-center">
+
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
@@ -187,30 +305,113 @@ function Navbar() {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex">
-                <NavigationMenu>
-                    <NavigationMenuList>
-                        <NavigationMenuItem>
-                            <Link to="/login">
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Get our Quotes
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                </NavigationMenu>
-                <NavigationMenu>
-                    <NavigationMenuList>
-                        <NavigationMenuItem>
-                            <Link to="/login">
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Login
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                </NavigationMenu>
+
+
+            <div className="flex items-center">
+                <Dialog>
+
+                    <NavigationMenu>
+                        <NavigationMenuList>
+                            <NavigationMenuItem>
+
+                                <DialogTrigger asChild className="cursor-pointer">
+                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                        Get our Quotes
+                                    </NavigationMenuLink>
+                                </DialogTrigger>
+
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
+
+                    <DialogContent className="sm:max-w-2xl">
+                        <DialogHeader className="space-y-3">
+                            <DialogTitle>Request a Quote</DialogTitle>
+                            <DialogDescription>
+                                Fill out the form below to receive a detailed quote for your desired product. <br /> We will get back to you shortly.
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <form onSubmit={handleSubmit}>
+                            <div className="flex items-center space-x-2 my-4">
+                                <div className="grid flex-1 gap-4">
+                                    <Label htmlFor="phoneno">Phone Number</Label>
+                                    <Input
+                                        name="phoneno"
+                                        type="tel"
+                                        placeholder="Enter your phone number"
+                                        minLength={10}
+                                        maxLength={15}
+                                        required
+                                        pattern="\d{10,15}"
+                                        value={formData.phoneno}
+                                        onChange={handleChange}
+                                    />
+                                    {errorMessage && <span className="text-sm text-red-500">{errorMessage}</span>}
+
+                                    <Label htmlFor="email">Email Address</Label>
+                                    <Input
+                                        name="email"
+                                        type="email"
+                                        placeholder="Enter your email address"
+                                        required
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+
+                                    <Label htmlFor="description">Product Description</Label>
+                                    <Textarea
+                                        name="description"
+                                        rows={6}
+                                        placeholder="Provide a detailed description of the product you are interested in"
+                                        required
+                                        value={formData.description}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+                            <DialogFooter className="sm:justify-start">
+                                <DialogClose>
+                                    <Button type="submit" variant="default">
+                                        Submit Request
+                                    </Button>
+                                </DialogClose>
+                            </DialogFooter>
+                        </form>
+                    </DialogContent>
+
+                    <NavigationMenu>
+                        {isLoggedIn ?
+                            (
+                                <NavigationMenuList>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger>Welcome {user!.email.length > 15 ? `${user!.email.substring(0, 15)}...` : user!.email}</NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <div className="w-full">
+                                                <button className="px-5 py-2 text-red-400 font-semibold hover:bg-red-200" onClick={handleLogout}>Logout</button>
+                                            </div>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+                                </NavigationMenuList>
+
+                            ) : (
+
+                                <NavigationMenuList>
+                                    <NavigationMenuItem>
+                                        <Link to="/login">
+                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                                Login
+                                            </NavigationMenuLink>
+                                        </Link>
+                                    </NavigationMenuItem>
+                                </NavigationMenuList>
+                            )
+                        }
+                    </NavigationMenu>
+
+                </Dialog>
             </div>
+
         </div>
     )
 }
