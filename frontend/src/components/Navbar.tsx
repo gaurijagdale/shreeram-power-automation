@@ -371,11 +371,9 @@ function Navbar() {
                                 </div>
                             </div>
                             <DialogFooter className="sm:justify-start">
-                                <DialogClose>
-                                    <Button type="submit" variant="default">
-                                        Submit Request
-                                    </Button>
-                                </DialogClose>
+                                <Button type="submit" variant="default">
+                                    Submit Request
+                                </Button>
                             </DialogFooter>
                         </form>
                     </DialogContent>
