@@ -7,6 +7,7 @@ import verifyToken from '../middlewares/verifyToken';
 
 import User from '../models/User';
 import Client from '../models/Client';
+import Quote from '../models/Quote';
 
 const router = express.Router();
 
@@ -79,6 +80,24 @@ router.get('/get-clients', async (req: Request, res: Response) => {
         res.json({ clients });
     } catch (err) {
         res.status(500).json({ error: 'Something went wrong' });
+    }
+});
+
+
+// Store quotes data in DB
+router.post('/quotes-route', async (req: Request, res: Response) => {
+    try {
+        const { phoneno, email, description } = req.body;
+        const newQuote = await Quote.create({ phoneno, email, description });
+
+        res.status(201).json({
+            message: 'Quote successfully saved!',
+            data: newQuote,
+        });
+    } catch (err) {
+        console.log('Error saving quote:', err);
+        res.status(500).json({ error: 'Failed to save quote. Please try again.' });
+
     }
 });
 

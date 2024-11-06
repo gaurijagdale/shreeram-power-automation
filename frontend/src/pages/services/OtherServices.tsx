@@ -9,13 +9,32 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 function OtherServices() {
     const services = [
-        { title: "BOILER AUTOMATION", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" },
-        { title: "TURBINE AUTOMATION", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" },
-        { title: "MILL AND DIFFUSER AUTOMATION", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" },
-        { title: "BOILING HOUSE AUTOMATION", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" },
-        { title: "INDUSTRIAL AUTOMATION SYSTEM MAINTENANCE SERVICES", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" },
-        { title: "FIELD INSTRUMENT MAINTENANCE SERVICES", description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti vitae temporibus totam? Amet eveniet vel veniam cumque soluta. Minus est impedit optio consequuntur tempore, repellendus iste? Culpa, magni quae!" }
-      ];
+        {
+            title: "BOILER AUTOMATION",
+            description: "Our Boiler Automation solutions enhance operational efficiency, ensuring optimal combustion and steam generation processes. Utilizing cutting-edge control systems, we provide real-time monitoring, precise temperature management, and energy efficiency, all while minimizing downtime and emissions."
+        },
+        {
+            title: "TURBINE AUTOMATION",
+            description: "With advanced Turbine Automation services, we deliver precise control for turbine operations, maximizing performance and lifespan. Our systems ensure reliable monitoring, speed control, and protection features, optimizing energy output and supporting sustainable practices."
+        },
+        {
+            title: "MILL AND DIFFUSER AUTOMATION",
+            description: "Our Mill and Diffuser Automation systems streamline extraction processes, enhancing yield and energy efficiency. By implementing intelligent control and real-time feedback, we enable consistent operation, reducing wastage and supporting eco-friendly production."
+        },
+        {
+            title: "BOILING HOUSE AUTOMATION",
+            description: "Our Boiling House Automation solutions focus on precision and efficiency in sugar and chemical production. We integrate advanced controls for temperature, pressure, and flow, ensuring consistent product quality, reduced energy usage, and enhanced safety."
+        },
+        {
+            title: "INDUSTRIAL AUTOMATION SYSTEM MAINTENANCE SERVICES",
+            description: "Our Industrial Automation System Maintenance Services are tailored to ensure uninterrupted operations and longevity of your systems. With regular diagnostics, preventive maintenance, and swift troubleshooting, we help maintain peak performance and prevent costly downtime."
+        },
+        {
+            title: "FIELD INSTRUMENT MAINTENANCE SERVICES",
+            description: "Our Field Instrument Maintenance Services provide expert calibration, repair, and optimization for field instruments, ensuring they operate at top precision. From flow meters to temperature sensors, we deliver excellence to support smooth and safe operations."
+        }
+    ];
+
 
     return (
         <div className='w-full px-24 py-16 '>
