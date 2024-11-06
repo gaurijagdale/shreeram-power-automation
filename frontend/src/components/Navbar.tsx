@@ -109,7 +109,7 @@ function Navbar() {
         }));
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleQuotesSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setErrorMessage('');
 
@@ -128,7 +128,7 @@ function Navbar() {
 
         try {
             // Replace with your API call
-            const response = await axios.post('http://your-backend-endpoint', requestData);
+            const response = await axios.post('http://localhost:5001/api/quotes-route', requestData);
             console.log('Response from server:', response.data);
 
             toast({
@@ -136,16 +136,15 @@ function Navbar() {
                 title: "Your quote request has been submitted successfully!",
             });
 
-            // Optionally, reset the form or close the dialog here
-            // setFormData({
-            //     phoneno: '',
-            //     email: '',
-            //     description: '',
-            // });
+            //reseting the form
+            setFormData({
+                phoneno: '',
+                email: '',
+                description: '',
+            });
 
         } catch (error) {
             console.error('Error submitting form:', error);
-            console.log(formData)
             toast({
                 className: "bg-red-600 text-white font-semibold border-none rounded-lg p-4 shadow-lg",
                 title: "Failed to submit your request. Please try again.",
@@ -332,7 +331,7 @@ function Navbar() {
                             </DialogDescription>
                         </DialogHeader>
 
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleQuotesSubmit}>
                             <div className="flex items-center space-x-2 my-4">
                                 <div className="grid flex-1 gap-4">
                                     <Label htmlFor="phoneno">Phone Number</Label>
