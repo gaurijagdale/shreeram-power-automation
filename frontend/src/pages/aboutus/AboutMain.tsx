@@ -6,12 +6,12 @@ import About3info from './About3info'
 
 function AboutMain() {
     return (
-        <>
+        <div className='mt-24'>
             <About1head />
             <About2numbers />
             <About3info/>
             <About4vision />
-        </>
+        </div>
     )
 }
 
