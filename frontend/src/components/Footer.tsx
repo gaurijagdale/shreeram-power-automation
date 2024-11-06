@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
+import brandLogo from '@/assets/imgs/brand-logo.png'
 
 
 function Footer() {
-    // const openExternalLink = (url) => {
-    //     window.open(url, '_blank');
-    // };
+    const openExternalLink = (url: string) => {
+        window.open(url, '_blank');
+    };
 
     return (
         <div className='w-full px-24 pt-20 pb-8 flex flex-col text-Dblue space-y-11 bg-gradient-to-b from-white to-Pblue'>
@@ -17,7 +18,7 @@ function Footer() {
 
                 <div aria-label='left-upper' className='w-2/5 flex flex-col space-y-5'>
                     <Link to="/">
-                        <img src="/brand-logo.png" alt="brandLogo" className='w-16 h-16' />
+                        <img src={brandLogo} alt="brandLogo" className='w-16 h-16' />
                     </Link>
 
                     <h3 className='font-semibold text-lg'>Innovative Power and Process Automation for a Wide Range of Industries</h3>
