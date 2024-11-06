@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
@@ -7,11 +9,22 @@ import servicesImg from '../../assets/imgs/servicesImg.png';
 
 
 function About1Head() {
-    const openExternalLink = (url) => {
+
+    const introRef = useRef<HTMLDivElement | null>(null);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (introRef.current) {
+            introRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [location]);
+
+
+    const openExternalLink = (url: string) => {
         window.open(url, '_blank');
     };
     return (
-        <div className='w-full px-24 py-20 grid grid-cols-5 text-Dblue'>
+        <div ref={introRef} id="intro" className='w-full px-24 py-20 grid grid-cols-5 text-Dblue'>
             <div aria-label='Text' className='col-span-3 flex flex-col items-start justify-center space-y-7'>
                 <h1 className='text-7xl text-Pblue font-semibold font-Josef'>About Us</h1>
                 <div className='space-y-3'>

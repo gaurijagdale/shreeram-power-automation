@@ -189,117 +189,109 @@ function Navbar() {
                         <NavigationMenuItem>
                             <Link to='/services'>
                                 <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                                <NavigationMenuContent className="">
+                                <NavigationMenuContent>
                                     <div className="grid grid-cols-4 gap-2 text-xs p-3 font-medium w-[500px]">
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                Transformer Oil Filtration System
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Transformer Oil Filtration</h4>
                                             <p className="text-slate-500">
-                                                Transformer Oil Filtration Systems use low-temperature, high-vacuum principles to remove particles and moisture to 5 - 10 ppm.
+                                                Our filtration systems remove impurities using advanced low-temperature, high-vacuum technology.
                                             </p>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                Transformer Testing Services
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Transformer Testing Services</h4>
                                             <p className="text-slate-500">
-                                                We offer transformer testing services covering resistance, ratio, polarity, phase relation, losses, impedance and temperature rise.
+                                                Comprehensive testing includes resistance, ratio, polarity, phase, losses, impedance, and temperature.
                                             </p>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Process Automation</h4>
                                             <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                Optimize your operations with custom automation solutions tailored to industry needs.
                                             </p>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Equipment Maintenance</h4>
                                             <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                Routine maintenance services to ensure your equipment operates at peak efficiency.
                                             </p>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Energy Audits</h4>
                                             <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                Comprehensive energy assessments to help you maximize energy efficiency and reduce costs.
                                             </p>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <h4 className="font-semibold group-hover:text-blue-500">Automation Consultation</h4>
                                             <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                Expert advice on integrating automation to enhance productivity and minimize operational risks.
                                             </p>
                                         </div>
                                     </div>
                                 </NavigationMenuContent>
                             </Link>
                         </NavigationMenuItem>
+
                         <NavigationMenuItem>
                             <Link to='/aboutus'>
                                 <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <div className="grid grid-cols-4 gap-2 text-xs p-3 font-medium w-[500px]">
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#intro'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Our Team</h4>
+                                                <p className="text-slate-500">
+                                                    Meet the experts driving innovation and reliability in our projects.
+                                                </p>
+                                            </Link>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#intro'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Contact Us</h4>
+                                                <p className="text-slate-500">
+                                                    Get in touch to discuss how we can support your automation needs.
+                                                </p>
+                                            </Link>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#info'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Core Values</h4>
+                                                <p className="text-slate-500">
+                                                    Be Inclusive, Be Inventive, and Get Results Right - our guiding principles.
+                                                </p>
+                                            </Link>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#info'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Industries We Serve</h4>
+                                                <p className="text-slate-500">
+                                                    Explore the diverse industries that benefit from our automation solutions.
+                                                </p>
+                                            </Link>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#mission'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Our Mission</h4>
+                                                <p className="text-slate-500">
+                                                    Discover our commitment to excellence in power and process automation.
+                                                </p>
+                                            </Link>
                                         </div>
-                                        <div className="col-span-2 space-y-1 hover:bg-red-100 rounded-md p-2 group">
-                                            <h4 className="font-semibold group-hover:text-red-500">
-                                                For small businesses
-                                            </h4>
-                                            <p className="text-slate-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </p>
+                                        <div className="col-span-2 space-y-1 hover:bg-blue-100 rounded-md p-2 group">
+                                            <Link to='/aboutus#mission'>
+                                                <h4 className="font-semibold group-hover:text-blue-500">Our Vision</h4>
+                                                <p className="text-slate-500">
+                                                    Learn about our goal to become the most trusted automation specialist.
+                                                </p>
+                                            </Link>
                                         </div>
+
+
                                     </div>
                                 </NavigationMenuContent>
                             </Link>
                         </NavigationMenuItem>
+
 
                     </NavigationMenuList>
                 </NavigationMenu>
