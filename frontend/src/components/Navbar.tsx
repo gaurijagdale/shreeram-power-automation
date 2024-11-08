@@ -13,6 +13,8 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import {
     Dialog,
     DialogContent,
@@ -36,6 +38,7 @@ import { Textarea } from "./ui/textarea";
 interface User {
     email: string;
     id: string;
+    profileImage?: string; // Add profile image URL as an optional property
     exp: number;
     iat: number;
 }
@@ -374,7 +377,12 @@ function Navbar() {
                             (
                                 <NavigationMenuList>
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Welcome {user!.email.length > 15 ? `${user!.email.substring(0, 15)}...` : user!.email}</NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="w-full h-full">
+                                            <Avatar>
+                                                <AvatarImage src={user?.profileImage} />
+                                                <AvatarFallback>{(user?.email.charAt(0))?.toUpperCase()}</AvatarFallback>
+                                            </Avatar>
+                                        </NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <div className="w-full">
                                                 <button className="px-5 py-2 text-red-400 font-semibold hover:bg-red-200" onClick={handleLogout}>Logout</button>
@@ -399,6 +407,7 @@ function Navbar() {
                     </NavigationMenu>
 
                 </Dialog>
+
             </div>
 
         </div>

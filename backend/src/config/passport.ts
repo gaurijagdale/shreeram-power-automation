@@ -11,6 +11,7 @@ const generateToken = (user: any) => {
     const payload = {
         id: user._id,
         email: user.email,
+        profileImage: user.profileImage, // Add profile image here
     };
 
     return jwt.sign(payload, process.env.JWT_SECRET || 'your_jwt_secret', {
@@ -33,6 +34,7 @@ passport.use(new GoogleStrategy({
         const newUser = new User({
             googleId: profile.id,
             email: profile.emails[0].value, // Use email from Google
+            profileImage: profile.photos[0].value, // Save profile image URL
             createdAt: new Date(),
         });
         await newUser.save();
