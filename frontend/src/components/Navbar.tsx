@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import brandLogo from '../assets/imgs/brand-logo.png';
 
 import {
@@ -85,15 +85,6 @@ function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState<User | null>(null); // Initialize user as an object or null
     const googleLogoutURL = "http://localhost:5001/api/auth/logout";
-    const handleLogout = async () => {
-        try {
-            await axios.post(googleLogoutURL, {}, { withCredentials: true });
-            setIsLoggedIn(false);
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
-    };
-
 
     const [formData, setFormData] = useState({
         phoneno: '',
@@ -104,6 +95,23 @@ function Navbar() {
     const [errorMessage, setErrorMessage] = useState('');
     const { toast } = useToast(); // Get the toast function
 
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await axios.post(googleLogoutURL, {}, { withCredentials: true });
+            setIsLoggedIn(false);
+            toast({
+                className: "bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] text-white font-semibold border-none rounded-lg p-4 shadow-lg",
+                title: "Logged out successfully. See you again!",
+            });
+            navigate("/");
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    };
+
+   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -135,7 +143,7 @@ function Navbar() {
             console.log('Response from server:', response.data);
 
             toast({
-                className: "bg-green-600 text-white font-semibold border-none rounded-lg p-4 shadow-lg",
+                className: "bg-gradient-to-r from-[#11998e] to-[#38ef7d] text-white font-semibold border-none rounded-lg p-4 shadow-lg",
                 title: "Your quote request has been submitted successfully!",
             });
 
@@ -164,6 +172,7 @@ function Navbar() {
             if (loginStatus.isLoggedIn) {
                 setUser(loginStatus.user)
             }
+            
         };
 
         checkAndFetchData(); // Check login status and fetch data

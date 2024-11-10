@@ -57,7 +57,7 @@ function Home2() {
         animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
         transition={{ delay: 0.5, duration: 1.5, type: "spring" }}
       >
-        <RainbowButton className=' w-72'>Get to know us</RainbowButton>
+        <RainbowButton className='w-72 hover:scale-105 duration-200 transition-all'>Get to know us</RainbowButton>
       </motion.div>
     </div>
   )

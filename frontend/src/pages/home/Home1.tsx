@@ -39,9 +39,9 @@ function Home1() {
                         animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
                         transition={{ delay: 0.7, duration: 1.5, type: "spring" }}
                     >
-                        <ShimmerButton className="shadow-2xl">
+                        <ShimmerButton className="shadow-2xl hover:scale-105">
                             <Link to="/services" className='z-50'>
-                                <span className="whitespace-pre-wrap text-center text-sm text-black font-semibold leading-none tracking-tight hover:bg-Lblue dark:from-white dark:to-slate-900/10 lg:text-lg">
+                                <span className="whitespace-pre-wrap text-center text-sm text-black font-semibold leading-none tracking-tight dark:from-white dark:to-slate-900/10 lg:text-lg">
                                     Get our services
                                 </span>
                             </Link>

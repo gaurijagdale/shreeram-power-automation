@@ -5,7 +5,6 @@ import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import servicesImg from '../../assets/imgs/login2.jpeg';
-import { Link } from 'react-router-dom';
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -16,21 +15,12 @@ function About1Head() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    const introRef = useRef<HTMLDivElement | null>(null);
-    const location = useLocation();
-
-    useEffect(() => {
-        if (introRef.current) {
-            introRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [location]);
-
 
     const openExternalLink = (url: string) => {
         window.open(url, '_blank');
     }
     return (
-        <div ref={introRef} id="intro" className='w-full px-24 py-20 grid grid-cols-2 text-Dblue gap-7'>
+        <div id="intro" className='w-full px-24 py-20 grid grid-cols-2 text-Dblue gap-7'>
             <motion.div
                 ref={ref}
                 initial={{ opacity: 0, x: -100 }}
