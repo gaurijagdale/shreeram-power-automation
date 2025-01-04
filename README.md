@@ -46,20 +46,21 @@ Follow the steps below to set up the project on your local machine.
    ```bash
    cd frontend
    npm install
+
   - Backend:
-    ```bash
-    cd backend
-    npm install
+   ```bash
+   cd backend
+   npm install
 4. Set up environment variables for the backend, such as the Google OAuth credentials, email/password configurations, and database settings.
 5. Run the development servers:
 - Frontend:
-  ```bash
-  cd frontend
-  npm run dev
+ ```bash
+ cd frontend
+ npm run dev
 - Backend:
-  ```bash
-  cd backend
-  npm run start
+ ```bash
+ cd backend
+ npm run start
 6. Open the app in your browser at http://localhost:3000.
 
 
