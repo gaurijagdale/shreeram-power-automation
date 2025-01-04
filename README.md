@@ -38,30 +38,42 @@ Follow the steps below to set up the project on your local machine.
 
    ```bash
    git clone https://github.com/gaurijagdale/shreeram-power-automation.git
+   ```
+
 2. Navigate into the project directory:
+
    ```bash
    cd shreeram-power-automation
+   ```
+
 3. Install dependencies for both frontend and backend:
-  - Frontend:
-   ```bash
-   cd frontend
-   npm install
+   - Frontend:
+     ```bash
+     cd frontend
+     npm install
+     ```
 
-- Backend:
-   ```bash
-   cd backend
-   npm install
+   - Backend:
+     ```bash
+     cd backend
+     npm install
+     ```
+
 4. Set up environment variables for the backend, such as the Google OAuth credentials, email/password configurations, and database settings.
-5. Run the development servers:
-- Frontend:
- ```bash
- cd frontend
- npm run dev
-- Backend:
- ```bash
- cd backend
- npm run start
-6. Open the app in your browser at http://localhost:3000.
 
+5. Run the development servers:
+   - Frontend:
+     ```bash
+     cd frontend
+     npm run dev
+     ```
+
+   - Backend:
+     ```bash
+     cd backend
+     npm run start
+     ```
+
+6. Open the app in your browser at [http://localhost:3000](http://localhost:3000).
 
 
