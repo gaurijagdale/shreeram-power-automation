@@ -37,7 +37,7 @@ Follow the steps below to set up the project on your local machine.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/shreeram-power-automation.git
+   git clone https://github.com/gaurijagdale/shreeram-power-automation.git
 2. Navigate into the project directory:
    ```bash
    cd shreeram-power-automation
