@@ -47,7 +47,7 @@ Follow the steps below to set up the project on your local machine.
    cd frontend
    npm install
 
-  - Backend:
+- Backend:
    ```bash
    cd backend
    npm install
